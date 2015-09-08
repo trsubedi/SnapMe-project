@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- jquery -->
+  <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js">></script>
+  <!-- underscore -->
+  <script src="/vendor/underscore/underscore-min.js"></script>
+  <!-- bootstrap JS -->
+  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <!-- app.js -->
+  <script src="/static/javascript/app.js"></script>
+</head>
+  <body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">User's profile</a></li>
+        <li><a href="#">music </a></li>
+        <li><a href="/logout">Logout<a></li>
+      </ul>
+    </div>
+  </div>
+
+</nav>  
+    <div class="container-fluid">
+      <div class="col-md-4">
+        <img class="img-responsive" src="/static/images/2.jpeg">
+        <P>Name:</p>
+        <p>email:</p>
+      </div>
+    </div>
+
+    <div class= "container-fluid">
+      <h1>Photo Gallery</h1>
+      <hr>
+      <button onclick='location.href="/create";' class="btn btn-default">Upload Images</button>
+      <div class="upload">
+      </div id>
+
+    </div>
+  </body>
+<html>
