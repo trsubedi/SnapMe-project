@@ -1,4 +1,7 @@
 // require dependencies
+var Picture = require('./images.js')
+
+
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
@@ -7,7 +10,9 @@ var mongoose = require('mongoose'),
 // define user schema
 var UserSchema = new Schema({
   email: String,
-  passwordDigest: String
+  passwordDigest: String,
+  createdAt: {type: Date, default: Date.now()},
+  pictures: [Picture]
 });
 
 // create a new user with secure (hashed) password

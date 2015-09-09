@@ -1,6 +1,7 @@
 //when document loads
 $(document).ready(function(){
   getPictures();
+  // postPictures();
 });
 
 // //define functions
@@ -26,4 +27,20 @@ function renderImages(array_of_image_objects) {
 	});	
 	$("#images-id").append(imagesToappend);
 }
+// function postPictures(){
+// //post new pictures from link
+// $("#image-form").on("submit", function(e){
+//     // prevent form submission
+//     e.preventDefault();
+//     // post to profile
+//     $.post("/profile", $(this).serialize())
+//       .done(function(res){
+//         // append new picture to the page
+//         getPictures();
+//         $("#image-form")[0].reset();
+//       });
+//   });
+// }
+
+
 

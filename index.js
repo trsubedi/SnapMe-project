@@ -38,9 +38,18 @@ app.get("/", function (req, res){
 app.get("/logout", function(req,res){
   res.redirect('/');
 });
-app.get("/create", function(req,res){
-  res.sendFile(views + '/create.html');
-});
+
+
+// app.post("/profile", function(req, res){
+//   var newPicture = req.body;
+//   //add a unique id
+  
+//   //add new picture to db array
+//   images.push(newPicture);
+//   //send a response with newly created object
+//   res.send(newPicture);
+
+// })
 
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
@@ -134,6 +143,7 @@ app.get('/profile', function (req, res) {
   // finds user currently logged in
   req.currentUser(function (err, user) {
     if (user) {
+      console.log("profile ",user)
       // res.send('Welcome ' + user.email);
       res.sendFile(views + '/profile.html')
     // redirect if there is no current user
@@ -141,6 +151,37 @@ app.get('/profile', function (req, res) {
       res.redirect('/login');
     }
   });
+});
+
+app.get("/pictures/new", function(req,res){ // "/picture/new"
+  // console.log(currentUser);
+  res.sendFile(views + '/create.html');
+});
+
+app.post("/picture", function(req, res){
+      var newPicture = req.body.url;
+        console.log(newPicture);
+
+        req.currentUser(function (err, user) {
+          console.log(user);
+        });
+    // db.User.findOne(user._id, function(err, user) {
+    // }
+    // var url = req.params.url;
+    // console.log(url);
+    // var id = user._id;
+    // user.pictures.push(url);
+  
+  // var user = req.params._id;
+  // console.log(user);
+  //add a unique id
+  
+  //add new picture to db array
+  // images.push(newPicture);
+
+  //send a response with newly created object
+  // res.send(newPicture);
+
 });
 
 // logout route (destroys session)

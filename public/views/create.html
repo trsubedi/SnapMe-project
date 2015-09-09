@@ -5,9 +5,9 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- jquery -->
-  <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js">></script>
+  <script type="text/javascript" src="/vendor/jquery/dist/jquery.min.js">></script>
   <!-- underscore -->
-  <script src="/vendor/underscore/underscore-min.js"></script>
+  <!--<script src="/vendor/underscore/underscore-min.js"></script> -->
   <!-- bootstrap JS -->
   <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Bootstrap css -->
@@ -15,12 +15,13 @@
   <!-- css -->
   <link rel="stylesheet" type="text/css" href="/static/css/style.css">
   <!-- app.js -->
-  <script src="/static/javascript/app.js"></script>
+  <!--<script src="/static/javascript/app.js"></script>-->
 </head>
 <body>
-<form action="" method="post" enctype="multipart/form-data" >
-<label for="upload" >Put Image Link</label><input type="text" id="upload" name="upload">
-<input type="submit" value="Go" >
+<form id="image-form" method="post" action="/user/:id/picture">
+  <label>Put Image Link</label>
+  <input type="text" id="upload" name="url" >
+  <button type="submit">GO</button>
 </form>
 </body>
 </html>
