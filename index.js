@@ -3,7 +3,8 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
-  User = require('./models/user'),
+  db = require('./models'),
+  // User = require('./models/user.js'),
   session = require('express-session'),
   path= require('path'),
   views = path.join(process.cwd(), '/public/views');
@@ -12,7 +13,23 @@ var express = require('express'),
 app.use("/static", express.static("public"));
 app.use("/vendor", express.static("bower_components"));
 // connect to mongodb
-mongoose.connect('mongodb://localhost/test');
+// mongoose.connect('mongodb://localhost/snapMe');
+
+//raw data
+var images =[
+  {url:'http://www.dayinthewild.com/wp-content/uploads/2015/05/photo-nature-images-6.jpg'},
+  {url:'http://imgscenter.com/images/2014/09/13/Beauty-of-nature-random-4884759-1280-800.jpg'},
+  {url:'https://upload.wikimedia.org/wikipedia/commons/1/1a/Bachalpseeflowers.jpg'},
+  {url:'https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg'},
+  {url:'http://www.projecthappyhearts.com/wp-content/uploads/2015/04/green-nature-dual-monitor-other.jpg'},
+  {url:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Rossville_Boardwalk_Wolf_River.jpg'},
+  {url:'http://www.natureasia.com/common/img/splash/thailand.jpg'}
+ 
+]
+//routes to send hardcoded image urls
+app.get('/images',function(req,res){
+  res.send(images);
+});
 
 //static routes
 app.get("/", function (req, res){
@@ -45,7 +62,7 @@ app.use('/', function (req, res, next) {
 
   // finds user currently logged in based on `session.userId`
   req.currentUser = function (callback) {
-    User.findOne({_id: req.session.userId}, function (err, user) {
+    db.User.findOne({_id: req.session.userId}, function (err, user) {
       req.user = user;
       callback(null, user);
     });
@@ -79,7 +96,7 @@ app.post('/users', function (req, res) {
   var newUser = req.body.user;
 
   // create new user with secure password
-  User.createSecure(newUser.email, newUser.password, function (err, user) {
+  db.User.createSecure(newUser.email, newUser.password, function (err, user) {
     res.redirect('/login');
   });
 });
@@ -103,7 +120,7 @@ app.post('/login', function (req, res) {
   var userData = req.body.user;
 
   // call authenticate function to check if password user entered is correct
-  User.authenticate(userData.email, userData.password, function (err, user) {
+  db.User.authenticate(userData.email, userData.password, function (err, user) {
     // saves user id to session
     req.login(user);
 

@@ -36,16 +36,20 @@
         <img class="img-responsive" src="/static/images/2.jpeg">
         <P>Name:</p>
         <p>email:</p>
-      </div>
+      </div >
     </div>
 
     <div class= "container-fluid">
       <h1>Photo Gallery</h1>
       <hr>
       <button onclick='location.href="/create";' class="btn btn-default">Upload Images</button>
-      <div class="upload">
-      </div id>
+      <div id="images-id">
+      </div>
 
     </div>
+    
   </body>
+    <script type="text/template" id="image-template">
+      <img id ="format" src="<%= imageObject.url%>">
+    </script>
 <html>

@@ -9,13 +9,6 @@ var UserSchema = new Schema({
   email: String,
   passwordDigest: String
 });
-// //pictures schema
-// var PictureSchema = new Schema({
-//   img
-// });
-
-//pictues model
-// var Pictues = mongoose.model('Pictue', PictureSchema)
 
 // create a new user with secure (hashed) password
 UserSchema.statics.createSecure = function (email, password, callback) {
