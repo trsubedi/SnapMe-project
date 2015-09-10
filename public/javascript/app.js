@@ -27,14 +27,15 @@ function renderImages(array_of_image_objects) {
 	});	
 	$("#images-id").append(imagesToappend);
 }
- function postPictures(){
- 	$.post('/profile',function(res){
- 		console.log(res);
- 	$("#images-id").append(res);
- 	});
+ // function postPictures(){
+ // 	$.post('/profile',function(res){
+ // 		console.log(res);
+ // 	$("#images-id").append(<div class"format">res</div>);
+ // 	});
 
 
- }
+ // }
+ 
 
 
 
