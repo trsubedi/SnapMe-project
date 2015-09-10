@@ -1,5 +1,7 @@
 // require dependencies
-var Picture = require('./images.js')
+var PictureObjects = require('./images.js');
+var Picture = PictureObjects.model;
+var PictureSchema = PictureObjects.schema;
 
 
 var mongoose = require('mongoose'),
@@ -12,7 +14,7 @@ var UserSchema = new Schema({
   email: String,
   passwordDigest: String,
   createdAt: {type: Date, default: Date.now()},
-  pictures: [Picture]
+  pictures: [PictureSchema]
 });
 
 // create a new user with secure (hashed) password

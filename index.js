@@ -12,45 +12,6 @@ var express = require('express'),
 //seve css bootstrap and js files
 app.use("/static", express.static("public"));
 app.use("/vendor", express.static("bower_components"));
-// connect to mongodb
-// mongoose.connect('mongodb://localhost/snapMe');
-
-//raw data
-var images =[
-  {url:'http://www.dayinthewild.com/wp-content/uploads/2015/05/photo-nature-images-6.jpg'},
-  {url:'http://imgscenter.com/images/2014/09/13/Beauty-of-nature-random-4884759-1280-800.jpg'},
-  {url:'https://upload.wikimedia.org/wikipedia/commons/1/1a/Bachalpseeflowers.jpg'},
-  {url:'https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg'},
-  {url:'http://www.projecthappyhearts.com/wp-content/uploads/2015/04/green-nature-dual-monitor-other.jpg'},
-  {url:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Rossville_Boardwalk_Wolf_River.jpg'},
-  {url:'http://www.natureasia.com/common/img/splash/thailand.jpg'}
- 
-]
-//routes to send hardcoded image urls
-app.get('/images',function(req,res){
-  res.send(images);
-});
-
-//static routes
-app.get("/", function (req, res){
-  res.sendFile(views + '/index.html');
-});
-app.get("/logout", function(req,res){
-  res.redirect('/');
-});
-
-
-// app.post("/profile", function(req, res){
-//   var newPicture = req.body;
-//   //add a unique id
-  
-//   //add new picture to db array
-//   images.push(newPicture);
-//   //send a response with newly created object
-//   res.send(newPicture);
-
-// })
-
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
   
@@ -61,6 +22,7 @@ app.use(session({
   secret: 'SuperSecretCookie',
   cookie: { maxAge: 60000 }
 }));
+
 
 // middleware to manage sessions
 app.use('/', function (req, res, next) {
@@ -85,6 +47,37 @@ app.use('/', function (req, res, next) {
 
   next();
 });
+
+
+//static routes
+app.get("/", function (req, res){
+  res.sendFile(views + '/index.html');
+});
+
+//routes to send hardcoded image urls
+app.get('/images',function(req,res){
+  db.Picture.find({},function(err,images){
+    res.send(images);
+  });
+ 
+});
+
+
+app.get("/logout", function(req,res){
+  res.redirect('/');
+});
+
+
+// app.post("/profile", function(req, res){
+//   var newPicture = req.body;
+//   //add a unique id
+  
+//   //add new picture to db array
+//   images.push(newPicture);
+//   //send a response with newly created object
+//   res.send(newPicture);
+
+// })
 
 // signup route (renders signup view)
 app.get('/signup', function (req, res) {
@@ -158,13 +151,21 @@ app.get("/pictures/new", function(req,res){ // "/picture/new"
   res.sendFile(views + '/create.html');
 });
 
-app.post("/picture", function(req, res){
-      var newPicture = req.body.url;
-        console.log(newPicture);
+app.post("/profile", function(req, res){
+    db.Picture.create({url: req.body.url},function(err, picture){
+      if(err){console.log(err);}
+      // add the picture to current user's pictures
+    res.sendFile(views+ '/profile.html');
+  });
 
-        req.currentUser(function (err, user) {
-          console.log(user);
-        });
+    });
+    
+      
+
+      // req.currentUser(function (err, user) {
+      //   console.log(user);
+      //   user.pictures.push(newPicture)
+      // });
     // db.User.findOne(user._id, function(err, user) {
     // }
     // var url = req.params.url;
@@ -182,7 +183,7 @@ app.post("/picture", function(req, res){
   //send a response with newly created object
   // res.send(newPicture);
 
-});
+
 
 // logout route (destroys session)
 app.get('/logout', function (req, res) {

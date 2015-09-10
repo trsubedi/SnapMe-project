@@ -18,7 +18,7 @@ function getPictures(){
 }
 
 function renderImages(array_of_image_objects) {
-	console.log(array_of_image_objects);
+	// console.log(array_of_image_objects);
 	var template = _.template($("#image-template").html());
 	// input images into template and append to html
 	imagesToappend = array_of_image_objects.map(function(imageObj){
@@ -27,20 +27,14 @@ function renderImages(array_of_image_objects) {
 	});	
 	$("#images-id").append(imagesToappend);
 }
-// function postPictures(){
-// //post new pictures from link
-// $("#image-form").on("submit", function(e){
-//     // prevent form submission
-//     e.preventDefault();
-//     // post to profile
-//     $.post("/profile", $(this).serialize())
-//       .done(function(res){
-//         // append new picture to the page
-//         getPictures();
-//         $("#image-form")[0].reset();
-//       });
-//   });
-// }
+ function postPictures(){
+ 	$.post('/profile',function(res){
+ 		console.log(res);
+ 	$("#images-id").append(res);
+ 	});
+
+
+ }
 
 
 
