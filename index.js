@@ -62,7 +62,6 @@ app.get('/images',function(req,res){
  
 });
 
-
 app.get("/logout", function(req,res){
   res.redirect('/');
 });

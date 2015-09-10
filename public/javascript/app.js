@@ -2,6 +2,7 @@
 $(document).ready(function(){
   getPictures();
   // postPictures();
+  makeBig();
 });
 
 // //define functions
@@ -27,14 +28,13 @@ function renderImages(array_of_image_objects) {
 	});	
 	$("#images-id").append(imagesToappend);
 }
- // function postPictures(){
- // 	$.post('/profile',function(res){
- // 		console.log(res);
- // 	$("#images-id").append(<div class"format">res</div>);
- // 	});
-
-
- // }
+ 
+ function makeBig(){
+ 	$("#format").click (function(){
+ 	$(this).css("width", "300px")
+ 	$(this).css("height", "500px")
+ });
+ }
  
 
 
