@@ -15,7 +15,7 @@
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "mongoose": "^4.1.5"
-  }
+  },
   "scripts": {
     "start": "node index.js",
     "postinstall": "bower install"   // <---- only need this line if you're using Bower
