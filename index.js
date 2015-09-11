@@ -50,6 +50,10 @@ app.use('/', function (req, res, next) {
 
 
 //static routes
+app.get("/modal", function (req,res){
+  res.sendFile(views + "/modal.html");
+});
+
 app.get("/", function (req, res){
   res.sendFile(views + '/index.html');
 });
