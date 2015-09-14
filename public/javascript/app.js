@@ -29,6 +29,10 @@ function renderImages(array_of_image_objects) {
 	$("#images-id").append(imagesToappend);
 }
  
+ // it: definitely avoid using the `.css` method in jquery. it would be much
+ // better to use a class `.bigger-format` that has the same styling, which 
+ // jquery could apply or remove using `.toggleClass` 
+
  function makeBig(){
  	$("#format").click (function(){
  	$(this).css("width", "300px")

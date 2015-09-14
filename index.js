@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   saveUninitialized: true,
   resave: true,
+  // it: consider actually generating a secret with the npm `key generator`
   secret: 'SuperSecretCookie',
   cookie: { maxAge: 60000 }
 }));
