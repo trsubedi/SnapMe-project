@@ -2,7 +2,7 @@ Solid job, happy you got the app functioning to the point where a user can creat
 
 ##Creativity
 
-* Good idea for you first project. It is more complicated than a todo list, but not overly ambition.
+* Good idea for you first project. It is more complicated than a todo list, but not overly ambitious.
 
 ##Planning
 
